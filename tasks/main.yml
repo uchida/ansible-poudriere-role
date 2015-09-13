@@ -1,31 +1,3 @@
-- name: poudriere has been installed
-  pkgng:
-    name=poudriere
-    state=present
-
-- name: /usr/ports/distfiles has been created
-  file:
-    path=/usr/ports/distfiles
-    state=directory
-
-- name: check zpool is available or not
-  command: /sbin/zfs list -H -o name -p "{{ poudriere_zpool }}"
-  register: zpool_available
-  changed_when: False
-  ignore_errors: True
-
-- name: zpool has been configured when available
-  lineinfile:
-    line='ZPOOL="{{ poudriere_zpool }}"'
-    dest=/usr/local/etc/poudriere.conf
-  when: zpool_available.rc == 0
-
-- name: default ports for poudriere has been initialized
-  command: poudriere ports -c -p default
-  args:
-    creates: /usr/local/poudriere/ports/default
-
-- name: builder jail has been created
-  command: poudriere jails -c -j {{ poudriere_jail }} -v {{ poudriere_baseversion }} -a amd64
-  args:
-    creates: /usr/local/poudriere/jails/{{ poudriere_jail }}
+---
+- include: freebsd.yml
+  when: ansible_os_family == "FreeBSD"
