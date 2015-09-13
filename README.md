@@ -12,7 +12,7 @@ Available variables are listed below, along with default values:
 ```yaml
   poudriere_zpool: zroot
   poudriere_jail: "freebsd:9:x86:64"
-  poudriere_baseversion: 9.3-RELEASE
+  poudriere_jailversion: 9.3-RELEASE
 ```
 
 Use zfs pool named {{ poudriere_zpool }}, when available.

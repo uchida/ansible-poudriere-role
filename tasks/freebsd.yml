@@ -27,6 +27,6 @@
     creates: /usr/local/poudriere/ports/default
 
 - name: builder jail has been created
-  command: poudriere jails -c -j {{ poudriere_jail }} -v {{ poudriere_baseversion }} -a amd64
+  command: poudriere jails -c -j {{ poudriere_jail }} -v {{ poudriere_jailversion }} -a amd64
   args:
     creates: /usr/local/poudriere/jails/{{ poudriere_jail }}
