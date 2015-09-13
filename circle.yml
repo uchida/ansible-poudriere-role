@@ -14,4 +14,5 @@ dependencies:
 test:
   override:
     - ansible-playbook -i localhost, --syntax-check tests/test.yml
+    - ansible-playbook -i localhost, --connection=local tests/test.yml
 
