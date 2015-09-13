@@ -1,0 +1,17 @@
+machine:
+  python:
+    version: 2.7.6
+
+dependencies:
+  pre:
+    - pip install ansible
+    - |
+      cat <<__EOF__ > ansible.cfg
+      [defaults]
+      roles_path = ../
+      __EOF__
+
+test:
+  override:
+    - ansible-playbook -i localhost, --syntax-check tests/test.yml
+
