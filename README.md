@@ -10,19 +10,19 @@ In addition, this role creates default ports tree and builder jail.
 Available variables are listed below, along with default values:
 
 ```yaml
-  zpool_name: zroot
-  jail_name: "freebsd:9:x86:64"
-  base_version: 9.3-RELEASE
+  poudriere_zpool: zroot
+  poudriere_jail: "freebsd:9:x86:64"
+  poudriere_baseversion: 9.3-RELEASE
 ```
 
-Use zfs pool named {{ zpool_name }}, when available.
+Use zfs pool named {{ poudriere_zpool }}, when available.
 
 ## Example Playbook
 
 ```yaml
   - hosts: servers
     roles:
-    - { role: uchida.poudriere, zpool: tank }
+    - { role: uchida.poudriere, poudriere_zpool: tank }
 ```
 
 ## License

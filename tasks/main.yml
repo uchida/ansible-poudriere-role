@@ -9,14 +9,14 @@
     state=directory
 
 - name: check zpool is available or not
-  command: /sbin/zfs list -H -o name -p "{{ zpool_name }}"
+  command: /sbin/zfs list -H -o name -p "{{ poudriere_zpool }}"
   register: zpool_available
   changed_when: False
   ignore_errors: True
 
 - name: zpool has been configured when available
   lineinfile:
-    line='ZPOOL="{{ zpool_name }}"'
+    line='ZPOOL="{{ poudriere_zpool }}"'
     dest=/usr/local/etc/poudriere.conf
   when: zpool_available.rc == 0
 
@@ -26,6 +26,6 @@
     creates: /usr/local/poudriere/ports/default
 
 - name: builder jail has been created
-  command: poudriere jails -c -j {{ jail_name }} -v {{ base_version }} -a amd64
+  command: poudriere jails -c -j {{ poudriere_jail }} -v {{ poudriere_baseversion }} -a amd64
   args:
-    creates: /usr/local/poudriere/jails/{{ jail_name }}
+    creates: /usr/local/poudriere/jails/{{ poudriere_jail }}

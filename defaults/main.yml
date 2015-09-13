@@ -1,3 +1,3 @@
-zpool_name: zroot
-jail_name: "freebsd:9:x86:64"
-base_version: 9.3-RELEASE
+poudriere_zpool: zroot
+poudriere_jail: "freebsd:9:x86:64"
+poudriere_baseversion: 9.3-RELEASE
