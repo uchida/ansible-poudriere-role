@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Akihiro Uchida
+  description: role to install poudriere
+  license: CC0
+  min_ansible_version: 1.2
+  platforms:
+  - name: FreeBSD
+    versions:
+     - 10.2
+     - 10.1
+     - 9.3
+  categories:
+  - packaging
+dependencies: []
+  
