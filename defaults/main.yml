@@ -1,3 +1,4 @@
 poudriere_zpool: zroot
 poudriere_jail: "freebsd:9:x86:64"
 poudriere_jailversion: 9.3-RELEASE
+poudriere_portsmethod: portsnap

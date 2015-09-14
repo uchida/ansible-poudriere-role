@@ -27,7 +27,7 @@
   when: zpool_available.rc == 0
 
 - name: default ports for poudriere has been initialized
-  command: poudriere ports -c -p default
+  command: poudriere ports -c -p default -m {{ poudriere_portsmethod }}
   args:
     creates: /usr/local/poudriere/ports/default
 

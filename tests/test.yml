@@ -10,3 +10,8 @@
       poudriere_zpool: zpool
       poudriere_jail: freebsd:10:x86:64
       poudriere_jailversion: 10.2-RELEASE
+    - role: ansible-poudriere-role
+      poudriere_zpool: zpool
+      poudriere_jail: freebsd:10:x86:64
+      poudriere_jailversion: 10.2-RELEASE
+      poudriere_portsmethod: git

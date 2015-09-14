@@ -14,11 +14,20 @@ Available variables are listed below, along with default values:
   poudriere_zpool: zroot
   poudriere_jail: "freebsd:9:x86:64"
   poudriere_jailversion: 9.3-RELEASE
+  poudriere_portsmethod: portsnap
 ```
 
 Use zfs pool named `{{ poudriere_zpool }}`, when available.
 Creates builder jail with `{{ poudriere_jail }}` and
 specify its version with `{{ poudriere_jailversion }}`.
+`{{ poudriere_portsmethod }}` could be one of the following values
+
+- `portsnap`
+- `svn`
+- `svn+http`
+- `svn+https`
+- `svn+ssh`
+- `git`
 
 ## Example Playbook
 
@@ -41,6 +50,18 @@ creates `9.3-RELEASE` and `10.2-RELEASE` builder.
     - role: uchida.poudriere
       poudriere_jail: "freebsd:10:x86:64"
       poudriere_jailversion: 10.2-RELEASE
+```
+
+creates `10.2-RELEASE` builder and git ports tree.
+
+```yaml
+  - hosts: servers
+    roles:
+
+    - role: uchida.poudriere
+      poudriere_jail: "freebsd:10:x86:64"
+      poudriere_jailversion: 10.2-RELEASE
+      poudriere_portsmethod: git
 ```
 
 ## License
