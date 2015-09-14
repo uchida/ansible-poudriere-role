@@ -30,20 +30,20 @@
   pkgng:
     name=git
     state=present
-  when: {{ poudriere_portsmethod }} == 'git'
+  when: '"{{ poudriere_portsmethod }}" == "git"'
 
-- name: svn has been installed when portsmethod is svn
+- name: subversion has been installed when portsmethod is svn
   pkgng:
-    name=svn
+    name=subversion
     state=present
-  when: {{ poudriere_portsmethod }} in ['svn', 'svn+http', 'svn+https', 'svn+ssh']
+  when: '"{{ poudriere_portsmethod }}" in ["svn", "svn+http", "svn+https", "svn+ssh"]'
 
 - name: default ports for poudriere has been initialized
-  command: poudriere ports -c -p default -m {{ poudriere_portsmethod }}
+  command: poudriere ports -c -p default -m "{{ poudriere_portsmethod }}"
   args:
     creates: /usr/local/poudriere/ports/default
 
 - name: builder jail has been created
-  command: poudriere jails -c -j {{ poudriere_jail }} -v {{ poudriere_jailversion }} -a amd64
+  command: poudriere jails -c -j "{{ poudriere_jail }}" -v "{{ poudriere_jailversion }}" -a amd64
   args:
-    creates: /usr/local/poudriere/jails/{{ poudriere_jail }}
+    creates: '/usr/local/poudriere/jails/{{ poudriere_jail }}'
