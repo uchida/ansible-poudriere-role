@@ -1,5 +1,6 @@
 # ansible-poudriere-role
 
+[![CircleCI](https://img.shields.io/circleci/project/uchida/ansible-poudriere-role.svg)](https://circleci.com/gh/uchida/ansible-poudriere-role)
 [![License](https://img.shields.io/github/license/uchida/ansible-poudriere-role.svg)](http://creativecommons.org/publicdomain/zero/1.0/deed)
 
 role to install poudriere, clean room package builder for FreeBSD.
