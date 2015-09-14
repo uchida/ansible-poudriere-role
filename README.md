@@ -16,14 +16,31 @@ Available variables are listed below, along with default values:
   poudriere_jailversion: 9.3-RELEASE
 ```
 
-Use zfs pool named {{ poudriere_zpool }}, when available.
+Use zfs pool named `{{ poudriere_zpool }}`, when available.
+Creates builder jail with `{{ poudriere_jail }}` and
+specify its version with `{{ poudriere_jailversion }}`.
 
 ## Example Playbook
+
+install poudriere with `tank` zpool.
 
 ```yaml
   - hosts: servers
     roles:
     - { role: uchida.poudriere, poudriere_zpool: tank }
+```
+
+creates `9.3-RELEASE` and `10.2-RELEASE` builder.
+
+```yaml
+  - hosts: servers
+    roles:
+    - role: uchida.poudriere
+      poudriere_jail: "freebsd:9:x86:64"
+      poudriere_jailversion: 9.3-RELEASE
+    - role: uchida.poudriere
+      poudriere_jail: "freebsd:10:x86:64"
+      poudriere_jailversion: 10.2-RELEASE
 ```
 
 ## License
