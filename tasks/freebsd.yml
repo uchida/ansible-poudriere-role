@@ -4,6 +4,11 @@
     name=poudriere
     state=present
 
+- name: dialog4ports has been installed
+  pkgng:
+    name=dialog4ports
+    state=present
+
 - name: /usr/ports/distfiles has been created
   file:
     path=/usr/ports/distfiles
