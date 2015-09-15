@@ -12,7 +12,7 @@ Available variables are listed below, along with default values:
 
 ```yaml
   poudriere_zpool: zroot
-  poudriere_jail: "freebsd:9:x86:64"
+  poudriere_jail: "FreeBSD:9:amd64"
   poudriere_jailversion: 9.3-RELEASE
   poudriere_portsmethod: portsnap
 ```
@@ -45,10 +45,10 @@ creates `9.3-RELEASE` and `10.2-RELEASE` builder.
   - hosts: servers
     roles:
     - role: uchida.poudriere
-      poudriere_jail: "freebsd:9:x86:64"
+      poudriere_jail: "FreeBSD:9:amd64"
       poudriere_jailversion: 9.3-RELEASE
     - role: uchida.poudriere
-      poudriere_jail: "freebsd:10:x86:64"
+      poudriere_jail: "FreeBSD:10:amd64"
       poudriere_jailversion: 10.2-RELEASE
 ```
 
@@ -59,7 +59,7 @@ creates `10.2-RELEASE` builder and git ports tree.
     roles:
 
     - role: uchida.poudriere
-      poudriere_jail: "freebsd:10:x86:64"
+      poudriere_jail: "FreeBSD:10:amd64"
       poudriere_jailversion: 10.2-RELEASE
       poudriere_portsmethod: git
 ```
