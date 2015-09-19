@@ -10,9 +10,11 @@ dependencies:
       [defaults]
       roles_path = ../
       __EOF__
+    - pip install ansible-lint
 
 test:
   override:
     - ansible-playbook -i localhost, --syntax-check tests/test.yml
     - ansible-playbook -i localhost, --connection=local tests/test.yml
+    - ansible-lint tests/test.yml
 
