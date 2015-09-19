@@ -3,7 +3,7 @@ galaxy_info:
   author: Akihiro Uchida
   description: role to install poudriere
   license: CC0
-  min_ansible_version: 1.4
+  min_ansible_version: 1.7
   platforms:
   - name: FreeBSD
     versions:
