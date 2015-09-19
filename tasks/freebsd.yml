@@ -1,15 +1,15 @@
 ---
-- name: poudriere has been installed
+- name: poudriere is installed
   pkgng:
     name=poudriere
     state=present
 
-- name: dialog4ports has been installed
+- name: dialog4ports is installed
   pkgng:
     name=dialog4ports
     state=present
 
-- name: /usr/ports/distfiles has been created
+- name: /usr/ports/distfiles is created
   file:
     path=/usr/ports/distfiles
     state=directory
@@ -20,30 +20,30 @@
   changed_when: False
   ignore_errors: True
 
-- name: zpool has been configured when available
+- name: zpool is configured in poudriere.conf when available
   lineinfile:
     line='ZPOOL="{{ poudriere_zpool }}"'
     dest=/usr/local/etc/poudriere.conf
   when: zpool_available.rc == 0
 
-- name: git has been installed when portsmethod is git
+- name: git is installed when portsmethod is git
   pkgng:
     name=git
     state=present
   when: '"{{ poudriere_portsmethod }}" == "git"'
 
-- name: subversion has been installed when portsmethod is svn
+- name: subversion is installed when portsmethod is svn
   pkgng:
     name=subversion
     state=present
   when: '"{{ poudriere_portsmethod }}" in ["svn", "svn+http", "svn+https", "svn+ssh"]'
 
-- name: default ports for poudriere has been initialized
+- name: default ports for poudriere is initialized
   command: poudriere ports -c -p default -m "{{ poudriere_portsmethod }}"
   args:
     creates: /usr/local/poudriere/ports/default
 
-- name: builder jail has been created
+- name: builder jail is created
   command: poudriere jails -c -j "{{ poudriere_jail }}" -v "{{ poudriere_jailversion }}" -a amd64
   args:
     creates: '/usr/local/poudriere/jails/{{ poudriere_jail }}'
