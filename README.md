@@ -32,34 +32,33 @@ poudriere_portsmethod: portsnap
 
 ## Example Playbook
 
-- install poudriere with `tank` zpool.
-  ```yaml
-  - hosts: servers
-    roles:
-    - { role: uchida.poudriere, poudriere_zpool: tank }
-  ```
-
-- creates `9.3-RELEASE` and `10.2-RELEASE` builder.
-  ```yaml
-  - hosts: servers
-    roles:
-    - role: uchida.poudriere
-      poudriere_jail: "FreeBSD:9:amd64"
-      poudriere_jailversion: 9.3-RELEASE
-    - role: uchida.poudriere
-      poudriere_jail: "FreeBSD:10:amd64"
-      poudriere_jailversion: 10.2-RELEASE
+install poudriere with `tank` zpool.
+```yaml
+- hosts: servers
+  roles:
+  - { role: uchida.poudriere, poudriere_zpool: tank }
 ```
 
-- creates `10.2-RELEASE` builder and `git` ports tree.
+creates `9.3-RELEASE` and `10.2-RELEASE` builder.
+```yaml
+- hosts: servers
+  roles:
+  - role: uchida.poudriere
+    poudriere_jail: "FreeBSD:9:amd64"
+    poudriere_jailversion: 9.3-RELEASE
+  - role: uchida.poudriere
+    poudriere_jail: "FreeBSD:10:amd64"
+    poudriere_jailversion: 10.2-RELEASE
+```
 
-  ```yaml
-  - hosts: servers
-    roles:
-    - role: uchida.poudriere
-      poudriere_jail: "FreeBSD:10:amd64"
-      poudriere_jailversion: 10.2-RELEASE
-      poudriere_portsmethod: git
+creates `10.2-RELEASE` builder and `git` ports tree.
+```yaml
+- hosts: servers
+  roles:
+  - role: uchida.poudriere
+    poudriere_jail: "FreeBSD:10:amd64"
+    poudriere_jailversion: 10.2-RELEASE
+    poudriere_portsmethod: git
 ```
 
 ## License
