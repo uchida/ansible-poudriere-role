@@ -1,14 +1,14 @@
-# ansible-poudriere-role
+# uchida.poudriere
 
 [![CircleCI](https://img.shields.io/circleci/project/uchida/ansible-poudriere-role.svg)](https://circleci.com/gh/uchida/ansible-poudriere-role)
 [![License](https://img.shields.io/github/license/uchida/ansible-poudriere-role.svg)](http://creativecommons.org/publicdomain/zero/1.0/deed)
 
-role to install poudriere, clean room package builder for FreeBSD.
+ansible role to install poudriere, clean room package builder for FreeBSD.
 In addition, this role creates default ports tree and builder jail.
 
 ## Role Variables
 
-Available variables are listed below, along with default values:
+Available role variables are listed below, along with default values:
 
 ```yaml
 poudriere_zpool: zroot
