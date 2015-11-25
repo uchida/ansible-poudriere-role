@@ -1,5 +1,6 @@
 # uchida.poudriere
 
+[![Ansible Role](https://img.shields.io/ansible/role/5102.svg)](https://galaxy.ansible.com/detail#/role/5102)
 [![CircleCI](https://img.shields.io/circleci/project/uchida/ansible-poudriere-role.svg)](https://circleci.com/gh/uchida/ansible-poudriere-role)
 [![License](https://img.shields.io/github/license/uchida/ansible-poudriere-role.svg)](https://tldrlegal.com/license/creative-commons-cc0-1.0-universal)
 
