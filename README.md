@@ -31,6 +31,7 @@ poudriere_portsmethod: portsnap
   - `svn+https`
   - `svn+ssh`
   - `git`
+  - `none`
 
 ## Example Playbook
 
