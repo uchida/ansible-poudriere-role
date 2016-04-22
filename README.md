@@ -1,6 +1,5 @@
 # uchida.poudriere
 
-[![Ansible Role](https://img.shields.io/ansible/role/5102.svg)](https://galaxy.ansible.com/detail#/role/5102)
 ![Version](https://img.shields.io/github/tag/uchida/ansible-poudriere-role.svg)
 [![License](https://img.shields.io/github/license/uchida/ansible-poudriere-role.svg)](https://tldrlegal.com/license/creative-commons-cc0-1.0-universal)
 [![Travis](https://img.shields.io/travis/uchida/ansible-poudriere-role.svg)](https://travis-ci.org/uchida/ansible-poudriere-role)
