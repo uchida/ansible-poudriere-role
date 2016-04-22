@@ -3,7 +3,7 @@
 [![Ansible Role](https://img.shields.io/ansible/role/5102.svg)](https://galaxy.ansible.com/detail#/role/5102)
 ![Version](https://img.shields.io/github/tag/uchida/ansible-poudriere-role.svg)
 [![License](https://img.shields.io/github/license/uchida/ansible-poudriere-role.svg)](https://tldrlegal.com/license/creative-commons-cc0-1.0-universal)
-[![CircleCI](https://img.shields.io/circleci/project/uchida/ansible-poudriere-role.svg)](https://circleci.com/gh/uchida/ansible-poudriere-role)
+[![Travis](https://img.shields.io/travis/uchida/ansible-poudriere-role.svg)](https://travis-ci.org/uchida/ansible-poudriere-role)
 
 ansible role to install poudriere, clean room package builder for FreeBSD.
 In addition, this role creates default ports tree and builder jail.
