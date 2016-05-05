@@ -1,8 +1,6 @@
 ---
 - hosts: all
   become: yes
-  tasks:
-    - raw: pkg install -y python2
   roles:
     - role: ansible-poudriere-role
       poudriere_zpool: zroot

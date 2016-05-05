@@ -4,6 +4,8 @@
   roles:
     - role: ansible-poudriere-role
       poudriere_zpool: ''
+      poudriere_jail: ''
+      poudriere_portsmethod: none
     - role: ansible-poudriere-role
       poudriere_zpool: ''
       poudriere_jail: FreeBSD:10:amd64
