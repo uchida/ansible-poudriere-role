@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
     end
     zfs.vm.provider :libvirt do |v|
       v.driver = 'qemu'
-      v.memory = 2048
+      v.memory = 4096
       v.graphics_type = 'none'
     end
     zfs.vm.synced_folder ".", "/vagrant", type: 'rsync'
@@ -40,7 +40,7 @@ Vagrant.configure(2) do |config|
     end
     ufs.vm.provider :libvirt do |v|
       v.driver = 'qemu'
-      v.memory = 2048
+      v.memory = 4096
       v.graphics_type = 'none'
     end
     ufs.vm.synced_folder ".", "/vagrant", type: 'rsync'
