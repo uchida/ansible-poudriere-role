@@ -13,6 +13,7 @@ Vagrant.configure(2) do |config|
       v.driver = 'qemu'
       v.memory = 4096
       v.graphics_type = 'none'
+      v.volume_cache = 'writeback'
     end
     zfs.vm.synced_folder ".", "/vagrant", type: 'rsync'
     zfs.vm.provision "bootstrap", type: "shell", inline: "sudo pkg install -q -y python2"
@@ -42,6 +43,7 @@ Vagrant.configure(2) do |config|
       v.driver = 'qemu'
       v.memory = 4096
       v.graphics_type = 'none'
+      v.volume_cache = 'writeback'
     end
     ufs.vm.synced_folder ".", "/vagrant", type: 'rsync'
     ufs.vm.provision "bootstrap", type: "shell", inline: "sudo pkg install -q -y python2"
