@@ -42,7 +42,7 @@ script:
   - pushd tests
   # after `adduser travis libvirtd`, re-login is required to take effect, so run with sudo
   - travis_wait sudo -E /opt/vagrant/bin/vagrant provision ${VM} --provision-with ansible
-  - sudo /opt/vagrant/bin/vagrant provision ${VM} --provision-with tests
+  - sudo /opt/vagrant/bin/vagrant provision ${VM} --provision-with test
   - popd
 
 notifications:
