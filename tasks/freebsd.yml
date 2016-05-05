@@ -49,3 +49,4 @@
   command: poudriere jails -c -j "{{ poudriere_jail }}" -v "{{ poudriere_jailversion }}" -a amd64
   args:
     creates: '/usr/local/poudriere/jails/{{ poudriere_jail }}'
+  when: '"{{ poudriere_jail }}" != ""'
