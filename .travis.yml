@@ -30,13 +30,17 @@ install:
   - printf '[defaults]\nroles_path=../' > ansible.cfg
   - pip install ansible-lint
   - ansible-lint --version
+  - pushd tests
+  # after `adduser travis libvirtd`, re-login is required to take effect, so run with sudo
+  - sudo /opt/vagrant/bin/vagrant up --provider=libvirt --no-provision ${VM}
+  - sudo /opt/vagrant/bin/vagrant provision ${VM} --provision-with bootstrap
+  - popd
 
 script:
   - ansible-playbook -i localhost, --syntax-check tests/test-${VM}.yml
   - ansible-lint tests/test-${VM}.yml
   - pushd tests
-  - sudo /opt/vagrant/bin/vagrant up --provider=libvirt --no-provision ${VM}
-  - sudo /opt/vagrant/bin/vagrant provision ${VM} --provision-with bootstrap
+  # because root user know nothing about ansible in virtualenv
   - sudo bash -c 'source ~/virtualenv/python2.7/bin/activate;
                   /opt/vagrant/bin/vagrant provision ${VM} --provision-with ansible'
   - sudo /opt/vagrant/bin/vagrant provision ${VM} --provision-with tests
