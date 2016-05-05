@@ -41,7 +41,7 @@ script:
   - ansible-lint tests/test-${VM}.yml
   - pushd tests
   # after `adduser travis libvirtd`, re-login is required to take effect, so run with sudo
-  - travis_wait sudo ./provision-ansible.sh
+  - travis_wait 40 sudo ./provision-ansible.sh
   - sudo /opt/vagrant/bin/vagrant provision ${VM} --provision-with test
   - popd
 
