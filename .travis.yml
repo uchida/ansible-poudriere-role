@@ -40,9 +40,8 @@ script:
   - ansible-playbook -i localhost, --syntax-check tests/test-${VM}.yml
   - ansible-lint tests/test-${VM}.yml
   - pushd tests
-  # because root user know nothing about ansible in virtualenv
-  - sudo bash -c 'source ~/virtualenv/python2.7/bin/activate;
-                  /opt/vagrant/bin/vagrant provision ${VM} --provision-with ansible'
+  # after `adduser travis libvirtd`, re-login is required to take effect, so run with sudo
+  - travis_wait sudo -E /opt/vagrant/bin/vagrant provision ${VM} --provision-with ansible
   - sudo /opt/vagrant/bin/vagrant provision ${VM} --provision-with tests
   - popd
 
