@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - raw: pkg install -y python2
+  roles:
+    - role: ansible-poudriere-role
+      poudriere_zpool: zroot
+      poudriere_jail: ''
+      poudriere_portsmethod: none
+    - role: ansible-poudriere-role
+      poudriere_zpool: zroot
+      poudriere_jail: FreeBSD:10:amd64
+      poudriere_jailversion: 10.3-RELEASE
+      poudriere_portsmethod: git

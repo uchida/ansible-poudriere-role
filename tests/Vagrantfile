@@ -1,0 +1,62 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.ssh.shell = "/bin/sh"
+
+  config.vm.define :zfs do |zfs|
+    zfs.vm.box = "uchida/freebsd"
+    zfs.vm.provider :virtualbox do |v|
+      v.memory = 1024
+    end
+    zfs.vm.provider :libvirt do |v|
+      v.driver = 'qemu'
+      v.memory = 1024
+    end
+    zfs.vm.synced_folder ".", "/vagrant", type: 'rsync'
+    zfs.vm.provision "bootstrap", type: "shell", inline: "sudo pkg install -q -y python2"
+    zfs.vm.provision :ansible do |ansible|
+      ansible.playbook = "test-zfs.yml"
+      ansible.raw_arguments = ["--extra-vars=ansible_python_interpreter=/usr/local/bin/python2.7"]
+		end
+    zfs.vm.provision "test", type: "shell", inline: <<-SHELL
+      pkg update -q
+      pkg install -q -y ca_root_nss bash
+      if ! grep -q '^fdesc' /etc/fstab; then
+        echo 'fdesc /dev/fd fdescfs rw 0 0' >> /etc/fstab
+        mount -a
+      fi
+      mkdir -p /opt/bats
+      fetch -q -o - https://github.com/sstephenson/bats/archive/v0.4.0.tar.gz | tar --strip-components 1 -C /opt/bats -zxf -
+      /opt/bats/bin/bats /vagrant/test.bats
+    SHELL
+  end
+
+  config.vm.define :ufs do |ufs|
+    ufs.vm.box = "uchida/freebsd-ufs"
+    ufs.vm.provider :virtualbox do |v|
+      v.memory = 1024
+    end
+    ufs.vm.provider :libvirt do |v|
+      v.driver = 'qemu'
+      v.memory = 1024
+    end
+    ufs.vm.synced_folder ".", "/vagrant", type: 'rsync'
+    ufs.vm.provision "bootstrap", type: "shell", inline: "sudo pkg install -q -y python2"
+    ufs.vm.provision :ansible do |ansible|
+      ansible.playbook = "test-ufs.yml"
+      ansible.raw_arguments = ["--extra-vars=ansible_python_interpreter=/usr/local/bin/python2.7"]
+		end
+    ufs.vm.provision "test", type: "shell", inline: <<-SHELL
+      pkg update -q
+      pkg install -q -y ca_root_nss bash
+      if ! grep -q '^fdesc' /etc/fstab; then
+        echo 'fdesc /dev/fd fdescfs rw 0 0' >> /etc/fstab
+        mount -a
+      fi
+      mkdir -p /opt/bats
+      fetch -q -o - https://github.com/sstephenson/bats/archive/v0.4.0.tar.gz | tar --strip-components 1 -C /opt/bats -zxf -
+      /opt/bats/bin/bats /vagrant/test.bats
+    SHELL
+  end
+end
