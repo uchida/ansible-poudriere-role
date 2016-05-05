@@ -42,7 +42,7 @@
   command: poudriere ports -c -p default -m "{{ poudriere_portsmethod }}"
   args:
     creates: /usr/local/poudriere/ports/default
-  when: '{{ poudriere_portsmethod }} != "none"'
+  when: '"{{ poudriere_portsmethod }}" != "none"'
 
 - name: builder jail is created
   command: poudriere jails -c -j "{{ poudriere_jail }}" -v "{{ poudriere_jailversion }}" -a amd64
