@@ -29,7 +29,7 @@ Vagrant.configure(2) do |config|
     zfs.vm.provision :ansible do |ansible|
       ansible.playbook = "test-zfs.yml"
       ansible.raw_arguments = ["--extra-vars=ansible_python_interpreter=/usr/local/bin/python2.7"]
-		end
+    end
 
     zfs.vm.provision "test", type: "shell", inline: <<-SHELL
       pkg update -q
@@ -65,7 +65,7 @@ Vagrant.configure(2) do |config|
     ufs.vm.provision :ansible do |ansible|
       ansible.playbook = "test-ufs.yml"
       ansible.raw_arguments = ["--extra-vars=ansible_python_interpreter=/usr/local/bin/python2.7"]
-		end
+    end
 
     ufs.vm.provision "test", type: "shell", inline: <<-SHELL
       pkg update -q
