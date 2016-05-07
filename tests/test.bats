@@ -5,6 +5,7 @@
   [ "$status" -eq 0 ]
 }
 @test "'/usr/local/poudriere/ports/default/UPDATING' is available" {
+  skip
   run ls /usr/local/poudriere/ports/default/UPDATING
   [ "$status" -eq 0 ]
 }

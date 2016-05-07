@@ -10,4 +10,4 @@
       poudriere_zpool: zroot
       poudriere_jail: FreeBSD:10:amd64
       poudriere_jailversion: 10.3-RELEASE
-      poudriere_portsmethod: git
+      poudriere_portsmethod: none
