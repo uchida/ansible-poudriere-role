@@ -2,6 +2,12 @@
 language: python
 python: "2.7"
 
+cache:
+  directories:
+    - $HOME/.cache/pip
+    - $HOME/.vagrant.d/boxes
+    - $HOME/.ccache
+
 sudo: required
 dist: trusty
 
@@ -15,21 +21,19 @@ env:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get install -y python-pip
-  - sudo apt-get install -y rsync
+  - sudo apt-get install -y python-pip rsync libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev qemu-kvm libvirt-bin
   - curl -Lo vagrant.deb "${VAGRANT_URL}"
   - sha256sum vagrant.deb
   - echo "${VAGRANT_SHA256SUM}  vagrant.deb" | sha256sum -c
   - sudo dpkg -i vagrant.deb
-  - sudo apt-get install -y libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev qemu-kvm libvirt-bin
+  - export PATH="/usr/lib/ccache:$PATH"
   - vagrant plugin install vagrant-libvirt
 
 install:
-  - pip install ansible
+  - pip install ansible ansible-lint
   - ansible --version
-  - printf '[defaults]\nroles_path=../' > ansible.cfg
-  - pip install ansible-lint
   - ansible-lint --version
+  - printf '[defaults]\nroles_path=../' > ansible.cfg
   - pushd tests
   # after `adduser travis libvirtd`, re-login is required to take effect, so run with sudo
   - sudo /opt/vagrant/bin/vagrant up --provider=libvirt --no-provision ${VM}
