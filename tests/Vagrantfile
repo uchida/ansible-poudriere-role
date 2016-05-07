@@ -13,6 +13,7 @@ Vagrant.configure(2) do |config|
 
     zfs.vm.provider :libvirt do |v|
       v.driver = 'qemu'
+      v.cpus = 2
       v.memory = 6144
       v.graphics_type = 'none'
       v.volume_cache = 'writeback'
@@ -53,6 +54,7 @@ Vagrant.configure(2) do |config|
 
     ufs.vm.provider :libvirt do |v|
       v.driver = 'qemu'
+      v.cpus = 2
       v.memory = 6144
       v.graphics_type = 'none'
       v.volume_cache = 'writeback'
