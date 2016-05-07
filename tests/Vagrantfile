@@ -13,19 +13,13 @@ Vagrant.configure(2) do |config|
 
     zfs.vm.provider :libvirt do |v|
       v.driver = 'qemu'
-      v.cpus = 2
-      v.memory = 6144
+      v.memory = 2048
       v.graphics_type = 'none'
-      v.volume_cache = 'writeback'
     end
 
     zfs.vm.synced_folder ".", "/vagrant", type: 'rsync'
 
-    zfs.vm.provision "bootstrap", type: "shell", inline: <<-SHELL
-      zfs set sync=disabled zroot
-      zfs set compression=off zroot
-      pkg install -q -y python2
-    SHELL
+    zfs.vm.provision "bootstrap", type: "shell", inline: "sudo pkg install -q -y python2"
 
     zfs.vm.provision :ansible do |ansible|
       ansible.playbook = "test-zfs.yml"
@@ -54,10 +48,8 @@ Vagrant.configure(2) do |config|
 
     ufs.vm.provider :libvirt do |v|
       v.driver = 'qemu'
-      v.cpus = 2
-      v.memory = 6144
+      v.memory = 2048
       v.graphics_type = 'none'
-      v.volume_cache = 'writeback'
     end
 
     ufs.vm.synced_folder ".", "/vagrant", type: 'rsync'

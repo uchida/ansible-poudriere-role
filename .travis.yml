@@ -21,12 +21,13 @@ env:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get install -y python-pip rsync libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev qemu-kvm libvirt-bin
+  - sudo apt-get install -y python-pip
+  - sudo apt-get install -y rsync
   - curl -Lo vagrant.deb "${VAGRANT_URL}"
   - sha256sum vagrant.deb
   - echo "${VAGRANT_SHA256SUM}  vagrant.deb" | sha256sum -c
   - sudo dpkg -i vagrant.deb
-  - export PATH="/usr/lib/ccache:$PATH"
+  - sudo apt-get install -y libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev qemu-kvm libvirt-bin
   - vagrant plugin install vagrant-libvirt
 
 install:
@@ -36,8 +37,8 @@ install:
   - printf '[defaults]\nroles_path=../' > ansible.cfg
   - pushd tests
   # after `adduser travis libvirtd`, re-login is required to take effect, so run with sudo
-  - sudo /opt/vagrant/bin/vagrant up --provider=libvirt --no-provision ${VM}
-  - sudo /opt/vagrant/bin/vagrant provision ${VM} --provision-with bootstrap
+  - sudo vagrant up --provider=libvirt --no-provision ${VM}
+  - sudo vagrant provision ${VM} --provision-with bootstrap
   - popd
 
 script:
@@ -46,7 +47,7 @@ script:
   - pushd tests
   # after `adduser travis libvirtd`, re-login is required to take effect, so run with sudo
   - travis_wait 40 sudo ./provision-ansible.sh
-  - sudo /opt/vagrant/bin/vagrant provision ${VM} --provision-with test
+  - sudo vagrant provision ${VM} --provision-with test
   - popd
 
 notifications:
