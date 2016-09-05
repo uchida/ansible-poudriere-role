@@ -34,7 +34,7 @@ install:
   - pip install ansible ansible-lint
   - ansible --version
   - ansible-lint --version
-  - printf '[defaults]\nroles_path=../' > ansible.cfg
+  - printf '[defaults]\nroles_path=../' | tee ansible.cfg
   - pushd tests
   # after `adduser travis libvirtd`, re-login is required to take effect, so run with sudo
   - sudo vagrant up --provider=libvirt --no-provision ${VM}
