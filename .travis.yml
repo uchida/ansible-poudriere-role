@@ -13,8 +13,8 @@ dist: trusty
 
 env:
   global:
-    - VAGRANT_URL=https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
-    - VAGRANT_SHA256SUM=ed0e1ae0f35aecd47e0b3dfb486a230984a08ceda3b371486add4d42714a693d
+    - VAGRANT_URL=https://releases.hashicorp.com/vagrant/1.8.5/vagrant_1.8.5_x86_64.deb
+    - VAGRANT_SHA256SUM=30ee435c3358c6a835ea52cf710f4e50caa0e77cb721332132a2d3386a8745d9
   matrix:
     - VM=ufs
     - VM=zfs
